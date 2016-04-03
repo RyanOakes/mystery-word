@@ -61,14 +61,21 @@ def inform_user_of_word_length():
 
 
 
-def initiate_core_game():
+def main():
+
+    user_game_mode = game_initation() #Starts the game
+
+    secret_word = choosing_game_difficulty(user_game_mode) #User selects game difficulty/secret word is chosen
+
+    inform_user_of_word_length() #Inform user of secret word's length
+
 
     correct_guesses = []
     print(secret_word)
     while len(correct_guesses) < 8:
 
         try:
-            #print(secret_word)
+
             display_guesses(secret_word, correct_guesses)
             user_letter_guess = input('\nGimme a letter please: ')
 
@@ -105,7 +112,7 @@ def initiate_core_game():
         play_again = input('Wanna play again? Type "Y" if you desire a rematch! ')
 
         if play_again.upper() == 'Y':
-            initiate_core_game()
+            main()
         else:
             print("\nUntil next time!\n")
 
@@ -127,6 +134,7 @@ medium_list = []
 hard_list = []
 master_words_list = []
 total_guesses = []
+secret_word = ()
 
 with open('/usr/share/dict/words', 'r') as text_doc:
 
@@ -141,14 +149,4 @@ with open('/usr/share/dict/words', 'r') as text_doc:
     create_the_list_hard(master_words_list)
 
 
-
-user_game_mode = game_initation() #Starts the game
-
-
-secret_word = choosing_game_difficulty(user_game_mode) #User selects game difficulty/secret word is chosen
-
-
-inform_user_of_word_length() #Inform user of secret word's length
-
-
-initiate_core_game() #Initiate main game
+main()
