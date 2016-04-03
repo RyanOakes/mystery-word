@@ -56,7 +56,7 @@ def choosing_game_difficulty(input):
         return list(random.choice(hard_list))
 
 
-def inform_user_of_word_length():
+def inform_user_of_word_length(secret_word):
         print("\nOK, here's a hint; your secret word is {} characters long. Good luck!\n ".format(len(secret_word)))
 
 
@@ -67,7 +67,7 @@ def main():
 
     secret_word = choosing_game_difficulty(user_game_mode) #User selects game difficulty/secret word is chosen
 
-    inform_user_of_word_length() #Inform user of secret word's length
+    inform_user_of_word_length(secret_word) #Inform user of secret word's length
 
 
     correct_guesses = []
@@ -107,9 +107,13 @@ def main():
             display_guesses(secret_word, correct_guesses)
 
 
-
     else:
-        play_again = input('Wanna play again? Type "Y" if you desire a rematch! ')
+
+        if len(correct_guesses) == 8:
+            print("\nBummer, you didn't get it! Your secret word was {}!".format(''.join(secret_word)))
+
+
+        play_again = input('\nWanna play again? Type "Y" if you desire a rematch! ')
 
         if play_again.upper() == 'Y':
             main()
