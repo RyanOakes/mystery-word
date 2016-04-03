@@ -1,120 +1,154 @@
 import re
-#
+import random
+
 # def mystery_word():
 
 # def main():
 
+def clean_text(word):
+    return word.lower().strip()
 
 
-def create_list(word):
-    return word.split()
-    cleansed_word = word.split()
-    return cleansed_word
+def game_initation():
+    print("""Welcome to Mystery Word!
+
+You may choose from three difficultly levels.
+Type 'e' for easy.
+Type 'm' for medium.
+Type 'h' for hard.\n""")
+    return input("What will it be? ")
+
+
+def create_the_list_easy(list):
+    for word in master_words_list:
+        if  len(word) >= 4 and len(word) <= 6:
+            easy_list.append(word)
+
+
+def create_the_list_medium(list):
+    for word in master_words_list:
+        if len(word) > 5 and len(word) <= 8:
+            medium_list.append(word)
+
+
+def create_the_list_hard(list):
+    for word in master_words_list:
+        if len(word) >= 8:
+            hard_list.append(word)
+
+
+def choosing_game_difficulty(input):
+
+    try:
+        if len(input) > 1:
+            print("Not legit! Please try again!")
+
+    except TypeError:
+        print("Please enter 'e' for Easy, 'm' for Medium, or 'h' for Hard: ")
+
+    if input == 'e':
+        return list(random.choice(easy_list))
+
+    elif input == 'm':
+        return list(random.choice(medium_list))
+
+    elif input == 'h':
+        return list(random.choice(hard_list))
+
+
+def inform_user_of_word_length():
+        print("\nOK, here's a hint; your secret word is {} characters long. Good luck!\n ".format(len(secret_word)))
 
 
 
+def initiate_core_game():
 
+    correct_guesses = []
+    print(secret_word)
+    while len(correct_guesses) < 8:
+
+        try:
+            #print(secret_word)
+            display_guesses(secret_word, correct_guesses)
+            user_letter_guess = input('\nGimme a letter please: ')
+
+            if user_letter_guess in correct_guesses:
+                print("\nHey, you already guessed that letter! Try again!\n")
+                continue
+
+            if len(user_letter_guess) > 1:
+                print("\nHey, I said one letter! Try again!\n")
+                continue
+
+            # if "_" in secret_word:
+            #     break
+
+            else:
+                correct_guesses += user_letter_guess
+                print("\nRemember, you only get eight guesses! You've made {} thus far.\n".format(len(correct_guesses)))
+                continue
+
+
+
+        except ValueError:
+            print("{}  is unacceptable!".format(guess))
+            continue
+
+        else:
+            print("WE MUST GET THIS FAR!")
+            print(correct_guesses)
+            display_guesses(secret_word, correct_guesses)
+
+
+
+    else:
+        play_again = input('Wanna play again? Type "Y" if you desire a rematch! ')
+
+        if play_again.upper() == 'Y':
+            initiate_core_game()
+        else:
+            print("\nUntil next time!\n")
+
+
+def display_guesses(secret_word, correct_guesses):
+
+    for letter in secret_word:
+        if letter in correct_guesses:
+            print(letter.upper(), end=" ")
+
+        else:
+            print("_", end=" ")
+
+
+################################################################################
+
+easy_list = []
+medium_list = []
+hard_list = []
 master_words_list = []
-with open('/usr/share/dict/words', 'r') as master_list:
+total_guesses = []
 
-    for word in master_list:
+with open('/usr/share/dict/words', 'r') as text_doc:
 
-            cleansed_word = create_list(word.lower())
-            master_words_list.append(cleansed_word)
+    for word in text_doc:
 
-    print(master_words_list)
+        cleansed_word = clean_text(word)
 
-    if word in master_words_list:
-        print(word)
+        master_words_list.append(cleansed_word)
 
-
-
-# word = word.split()
-# word = word.lower()
-# return word
-# ​
-# def clean_characters(sentence):
-#     return re.sub(r'[^A-Za-z]', '', sentence).lower()
-#         #word.split()
+    create_the_list_easy(master_words_list)
+    create_the_list_medium(master_words_list)
+    create_the_list_hard(master_words_list)
 
 
 
-# all_lines = {}
-# with open('sample.txt', 'r') as read:
-#     read.seek(0)
-#     for line in read:
-#         for word in line.split():
-#             word = re.sub('[^A-Za-z]', '', word).lower()
-#             if word not in all_lines:
-#                 all_lines[word] = 1
-#             else:
-#                 all_lines[word] += 1
+user_game_mode = game_initation() #Starts the game
 
 
-
-        # for word in line.split():
-        #     word = re.sub('[^A-Za-z]', '', word).lower()
-        #     if word not in all_lines:
-        #         all_lines[word] = 1
-        #     else:
-        #         all_lines[word] += 1
-        #
-        #             for line in f:
-        # for word in f.split():
-        #     #words - line.split()
-        #     scrubbed_word = re.sub('[a-Zaz]', " ", word).lower()
-        #     if scrubbed_word != '':
-        #         print(scrubbed_word)
-
-#BEGIN GAME
-    #User must choose between EASY -- NORMAL -- HARD difficulty
-#     easy_dict = ()
-#
-#     normal_dict = ()
-#
-#     hard = ()
-#
-#
-# adding to dic
-#                 if word in word_count:
-#
-#                 if word not in word_count
-#                     word_count[word] = 1
-#
-#                 else:
-#                     word_count[word] += 1
-
-#SECRET WORD IS CHOSEN
-    #INFORM user of character length of said word
+secret_word = choosing_game_difficulty(user_game_mode) #User selects game difficulty/secret word is chosen
 
 
-#USER GUESS
-    #ASK user to input a letter choice
-        #Both upper and lower case are acceptable
-    #IF user enters invalid entry (e.g. more than one letter), inform them they
-    #try again
-    #If USER repeats a guess, do NOT take away a guess. INFORM them they've already
-    #guessed that letter and ask them to try again.
-    #If USER runs out of guesses (eight max), reveal the word to user and end game
+inform_user_of_word_length() #Inform user of secret word's length
 
 
-#GUESS EVALUATION
-    #Let the user know if letter appears in the SECRET WORD
-
-
-#DISPLAY GUESS
-    #Display the partially-guessed word, including letters that have not been guessed.
-        #For example, if they've only gotten "a" and "e" in apple, print a _ _ _ e
-
-
-#DISPLAY REMAINING GUESSES
-    #INFORM user of remaining guess.
-    #Users are only allowed 8 total guesses.
-
-
-#GAME CONCLUSION
-    #Game ends when user constructs FULL WORD or runs out of guesses
-
-
-#GAME RE-INITIATION
-    #Ask user if they wish to play again; if they reply positively, restart game
+initiate_core_game() #Initiate main game
