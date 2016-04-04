@@ -71,7 +71,7 @@ def main():
 
 
     correct_guesses = []
-    print(secret_word)
+    #print(secret_word)
     while len(correct_guesses) < 8:
 
         try:
