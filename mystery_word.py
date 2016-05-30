@@ -1,4 +1,3 @@
-import re
 import random
 
 
@@ -18,7 +17,7 @@ Type 'h' for hard.\n""")
 
 def create_the_list_easy(list):
     for word in master_words_list:
-        if  len(word) >= 4 and len(word) <= 6:
+        if len(word) >= 4 and len(word) <= 6:
             easy_list.append(word)
 
 
@@ -59,11 +58,14 @@ def inform_user_of_word_length(secret_word):
 
 def main():
 
-    user_game_mode = game_initation() #Starts the game
+    #Starts the game
+    user_game_mode = game_initation()
 
-    secret_word = choosing_game_difficulty(user_game_mode) #User selects game difficulty/secret word is chosen
+    #User selects game difficulty/secret word is chosen
+    secret_word = choosing_game_difficulty(user_game_mode)
 
-    inform_user_of_word_length(secret_word) #Inform user of secret word's length
+    #Inform user of secret word's length
+    inform_user_of_word_length(secret_word)
 
     correct_guesses = []
 
@@ -88,7 +90,7 @@ def main():
                 continue
 
         except ValueError:
-            print("{}  is unacceptable!".format(guess))
+            print("{} is unacceptable!".format(guess))
             continue
 
         else:
@@ -100,7 +102,6 @@ def main():
 
         if len(correct_guesses) == 8:
             print("\nBummer, you didn't get it! Your secret word was {}!".format(''.join(secret_word)))
-
 
         play_again = input('\nWanna play again? Type "Y" if you desire a rematch! ')
 
@@ -119,8 +120,6 @@ def display_guesses(secret_word, correct_guesses):
         else:
             print("_", end=" ")
 
-
-################################################################################
 
 easy_list = []
 medium_list = []
