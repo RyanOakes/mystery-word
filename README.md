@@ -1,16 +1,22 @@
 #Mystery Word
 
-The purpose of this game is to write a Hangman-style interactive game that pits user against computer.
+##Synopsis
 
-The computer selects a random word (secret word) from a list. There are three difficulty levels - easy, medium and hard.
+This program is a Hangman-style interactive game that pits user against computer.
 
-In easy mode, the secret word is between 4-6 letters.
+The computer selects a random word (secret word) from a list. There are three difficulty levels - easy, medium and hard (the harder the difficulty, the more difficult/obscure the word.)
 
-IN medium mode, the secret word is between 6-8 letters.
-
-In hard mode, the secret word is 8+ letters.
-
-The user gets up to eight chances to successful guess the word, making one-letter attempts at a time. Repeated letter guesses and
-correct letter guesses do not count towards that eight-guess total.
+The user gets up to eight chances to successful guess the word, making one-letter attempts at a time. Repeated letter guesses and correct letter guesses do not count towards that eight-guess total.
 
 The game continues until either the user correctly guesses the word or runs out of turns. At this point, they are prompted to play again - if they wish - or exit the program.
+
+##Objectives
+
+1. Understand all the basics of Python!
+2. Be able to create an interactive program.
+3. Be able to choose a random value.
+4. Be able to keep track of state.
+5. Be able to read from a file.
+6. Be able to test your code.
+
+This program was written in Python 3.5.1 and requires no additional installs. 

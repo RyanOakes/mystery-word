@@ -1,9 +1,6 @@
 import re
 import random
 
-# def mystery_word():
-
-# def main():
 
 def clean_text(word):
     return word.lower().strip()
@@ -60,7 +57,6 @@ def inform_user_of_word_length(secret_word):
         print("\nOK, here's a hint; your secret word is {} characters long. Good luck!\n ".format(len(secret_word)))
 
 
-
 def main():
 
     user_game_mode = game_initation() #Starts the game
@@ -69,9 +65,8 @@ def main():
 
     inform_user_of_word_length(secret_word) #Inform user of secret word's length
 
-
     correct_guesses = []
-    #print(secret_word)
+
     while len(correct_guesses) < 8:
 
         try:
@@ -87,15 +82,10 @@ def main():
                 print("\nHey, I said one letter! Try again!\n")
                 continue
 
-            # if "_" in secret_word:
-            #     break
-
             else:
                 correct_guesses += user_letter_guess
                 print("\nRemember, you only get eight guesses! You've made {} thus far.\n".format(len(correct_guesses)))
                 continue
-
-
 
         except ValueError:
             print("{}  is unacceptable!".format(guess))
@@ -105,7 +95,6 @@ def main():
             print("WE MUST GET THIS FAR!")
             print(correct_guesses)
             display_guesses(secret_word, correct_guesses)
-
 
     else:
 
